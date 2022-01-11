@@ -95,7 +95,6 @@ class DataProcessor:
         if not self.validation_result or self.image is None:
             return self
         try:
-            base64.b64decode(self.image)
             face_detection_result = get_face(cv2.imdecode(np.frombuffer(base64.b64decode(self.image), dtype=np.uint8), flags=cv2.IMREAD_COLOR))
             self.face_detection = {
                 "face_image": face_detection_result['face'],
