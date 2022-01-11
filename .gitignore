@@ -4,3 +4,4 @@ __pycache__
 # IDE Specifics
 .idea
 .vscode
+flycheck*

@@ -113,6 +113,11 @@ class WsChannelHandler(tornado.websocket.WebSocketHandler): # pylint: disable=W0
         self._set_memo(memo)
         self._set_model_selection(model_selection)
 
+    def set_default_headers(self):
+        self.set_header('Access-Control-Allow-Origin', '*')
+        # self.set_header('Access-Control-Allow-Methods', 'GET, OPTIONS')
+        self.set_header('Access-Control-Allow-Headers', 'x-requested-with')
+
     def open(self, channel=None): # pylint: disable=W0221
         """
         Tornado WS Open Connection Handler
