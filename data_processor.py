@@ -101,9 +101,9 @@ class DataProcessor:
                 "position": face_detection_result["position"]
             }
         except ValueError:
-            logging.warning('[WARN] Invalid Base64')
+            logging.warning('Invalid Base64')
         except cv2.error:
-            logging.warning('[WARN] Invalid Image')
+            logging.warning('Invalid Image')
         return self
 
     def is_normal_mode(self):

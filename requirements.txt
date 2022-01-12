@@ -1,12 +1,12 @@
 cerberus==1.3.4
 future==0.18.2
-keras @ file:///build/python-keras/src/keras-2.7.0-py2.py3-none-any.whl
+keras==2.8.0rc0
 Keras-Applications==1.0.8
 Keras-Preprocessing==1.1.2
 numpy==1.21.5
-opencv-python==4.5.4.60
+opencv-python==4.5.5.62
 Pillow==8.4.0
 python-magic==0.4.24
-tensorflow-gpu @ file:///build/tensorflow/src/tmpcuda/tensorflow_gpu-2.7.0-cp310-cp310-linux_x86_64.whl
+tensorflow==2.8.0rc0
 tornado==6.1
 typing-extensions==3.10.0.2
