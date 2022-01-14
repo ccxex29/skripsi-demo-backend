@@ -35,7 +35,9 @@ jobs:
       - name: Install Python
         run: sudo apt-get install -y --no-install-recommends python3.10-venv
       - name: Install PIP
-        run: python3.10 -m ensurepip && python3.10 -m pip install --upgrade pip
+        run: python3.10 -m ensurepip 
+      - name: Upgrade PIP
+        run: python3.10 -m pip install --upgrade pip
       - name: Install pylint
         run: python3.10 -m pip install pylint
       - name: Execute pylint
