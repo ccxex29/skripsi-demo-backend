@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	libcudnn8 \
 	libsm6 \
 	libxext6 \
-	$PYTHON_PACKAGE \
+	$PYTHON_PACKAGE
 RUN ln -s /usr/bin/python3.10 /usr/bin/python3; \
 	ln -s /usr/bin/python3 /usr/bin/python
 RUN $PYTHON -m ensurepip && \
