@@ -35,6 +35,6 @@ jobs:
       - name: Build docker image
         run: sudo docker build -t img .
       - name: Run pylint step 1
-        run: sudo docker run pylint *.py
+        run: sudo docker run img pylint *.py
       - name: Run pylint step 2
-        run: sudo docker run pylint models/*.py
+        run: sudo docker run img pylint models/*.py
