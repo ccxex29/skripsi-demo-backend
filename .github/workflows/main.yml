@@ -28,8 +28,8 @@ jobs:
       # Runs a single command using the runners shell
       - name: Update APT Repository
         run: sudo apt-get update
-      - name: Install Python
-        run: sudo apt-get install -y --no-install-recommends docker.io
+      - name: Install Docker
+        run: sudo apt-get install -y --no-install-recommends containerd docker.io
       - name: Start Docker service
         run: sudo systemctl start docker 
       - name: Build docker image
