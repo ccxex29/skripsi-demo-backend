@@ -29,10 +29,12 @@ jobs:
       - name: Update APT Repository
         run: sudo apt-get update
       - name: Install Python
-        run: sudo apt-get install -y --no-install-recommends python3 python3-pip
-      - name: Upgrade PIP
-        run: python3 -m pip install --upgrade pip
-      - name: Install pylint
-        run: python3 -m pip install pylint
-      - name: Execute pylint
-        run: python3 -m pylint ./*.py && python3.10 -m pylint ./models/*.py
+        run: sudo apt-get install -y --no-install-recommends docker.io
+      - name: Start Docker service
+        run: sudo systemctl start docker 
+      - name: Build docker image
+        run: sudo docker build -t img .
+      - name: Run pylint step 1
+        run: sudo docker run pylint *.py
+      - name: Run pylint step 2
+        run: sudo docker run pylint models/*.py
