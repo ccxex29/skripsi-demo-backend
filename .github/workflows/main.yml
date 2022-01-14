@@ -26,19 +26,13 @@ jobs:
       - uses: actions/checkout@v2
 
       # Runs a single command using the runners shell
-      - name: Add APT Repository
-        run: echo "deb http://ppa.launchpad.net/deadsnakes/ppa/ubuntu focal main\ndeb-src http://ppa.launchpad.net/deadsnakes/ppa/ubuntu focal main" | sudo tee /etc/apt/sources.list.d/deadsnakes.list 
-      - name: Add APT Repository Key
-        run: sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F23C5A6CF475977595C89F51BA6932366A755776
       - name: Update APT Repository
         run: sudo apt-get update
       - name: Install Python
-        run: sudo apt-get install -y --no-install-recommends python3.10-venv
-      - name: Install PIP
-        run: python3.10 -m ensurepip 
+        run: sudo apt-get install -y --no-install-recommends python3 python3-pip
       - name: Upgrade PIP
-        run: python3.10 -m pip install --upgrade pip
+        run: python3 -m pip install --upgrade pip
       - name: Install pylint
-        run: python3.10 -m pip install pylint
+        run: python3 -m pip install pylint
       - name: Execute pylint
-        run: python3.10 -m pylint ./*.py && python3.10 -m pylint ./models/*.py
+        run: python3 -m pylint ./*.py && python3.10 -m pylint ./models/*.py
