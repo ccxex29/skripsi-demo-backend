@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	curl \
     ffmpeg \
 	git \
+	libcudnn8 \
 	libsm6 \
 	libxext6 \
 	$PYTHON_PACKAGE

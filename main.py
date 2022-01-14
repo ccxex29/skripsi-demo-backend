@@ -8,6 +8,7 @@ from typing import Optional
 import logging
 import uuid
 import json
+import time
 
 import tornado.web
 import tornado.httpserver
@@ -158,7 +159,17 @@ class WsChannelHandler(tornado.websocket.WebSocketHandler): # pylint: disable=W0
                 'status': 'success'
             }))
             return
-        run_process()
+        def socket_message_check():
+            if message.startswith('ping'):
+                self.write_message({
+                    'status': 'pong',
+                    'message': time.time()
+                })
+                return
+            run_process()
+            return
+
+        socket_message_check()
         # Signal end of message queue from request
         self.write_message({
             'status': 'done',
