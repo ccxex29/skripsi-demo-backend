@@ -29,7 +29,7 @@ jobs:
       - name: Update APT Repository
         run: sudo apt-get update
       - name: Install Docker
-        run: sudo apt-get install -y --no-install-recommends containerd docker.io
+        run: sudo apt-get install -y --no-install-recommends runc containerd docker.io
       - name: Start Docker service
         run: sudo systemctl start docker 
       - name: Build docker image
