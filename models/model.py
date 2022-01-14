@@ -71,7 +71,7 @@ class Model(ABC):
         """
         Public Trigger Predict Method
         """
-        self._set_face(face)._preprocess()
+        self._set_face(face)._preprocess() # pylint: disable=W0212
         if self.face is not None:
             return self.predict()
         return None
