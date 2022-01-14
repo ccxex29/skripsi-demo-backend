@@ -10,8 +10,8 @@ class Vgg16(Model):
     """
     OurLeNet Model
     """
-    def _load_model(self): # pylint: disable=no-self-use
+    def _load_model(self): # pylint: disable=R0201,C0116
         return keras.models.load_model('models/preprocessed/vgg16')
 
-    def predict(self):
+    def predict(self): # pylint: disable=C0116
         return self._get_prediction_result(self.model.predict(np.array([self.face]))[0][0])
