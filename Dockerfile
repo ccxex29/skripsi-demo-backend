@@ -17,12 +17,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	libsm6 \
 	libxext6 \
 	$PYTHON_PACKAGE \
-	pylint
-RUN ln -s /usr/bin/python3.10 /usr/bin/python3 && \
+RUN ln -s /usr/bin/python3.10 /usr/bin/python3; \
 	ln -s /usr/bin/python3 /usr/bin/python
 RUN $PYTHON -m ensurepip && \
 	$PYTHON -m pip install --upgrade pip && \
 	$PYTHON -m pip install git+https://github.com/pypa/virtualenv.git@20.8.1 && \
+	$PYTHON -m pip install pylint && \
 	$PYTHON -m virtualenv -p $PYTHON pypyenv && \
 	. ./pypyenv/bin/activate
 RUN $PYTHON -m pip install -r requirements.txt
