@@ -42,7 +42,8 @@ class DataLogging():
                     pos_x INTEGER,
                     pos_y INTEGER,
                     pos_w INTEGER,
-                    pos_h INTEGER
+                    pos_h INTEGER,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                 )
                 ''')
 
