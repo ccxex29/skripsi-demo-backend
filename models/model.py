@@ -42,7 +42,6 @@ class Model(ABC):
         """
         if self.face is None:
             return self
-        self.face = cv2.cvtColor(self.face, cv2.COLOR_BGR2RGB)
         self.face = cv2.resize(self.face, self.FACE_SHAPE)
         return self
 

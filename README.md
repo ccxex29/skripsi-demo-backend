@@ -17,15 +17,21 @@ Please refer to [NVIDIA Documentation](https://docs.nvidia.com/datacenter/cloud-
 
 To build the docker image:  
 ```bash
-# docker build -t skripsi-backend-docker .
+# docker build -t skripsi-docker-backend .
 ```
 
 After that, run image by executing:  
 Without GPU:  
 ```bash
-# docker run -p 8889:8889 skripsi-backend-docker
+# docker run -p 8889:8889 skripsi-docker-backend
 ```
 With GPU:  
 ```bash
-# docker run -p 8889:8889 --gpu all skripsi-backend-docker
+# docker run -p 8889:8889 --gpus all skripsi-docker-backend
 ```
+
+To run the image and binding the logs, add `--mount src=/absolute/path/to/host/dir,target=/opt/backend-skripsi/logs,type=bind` parameter to the run command, like so:  
+```bash
+# docker run -p 8889:8889 --gpus all --mount src=/home/ccxex29/Programming/Python/skripsi/backend/dockerfs,target=/opt/backend-skripsi/logs,type=bind skripsi-docker-backend
+```
+

@@ -1,4 +1,6 @@
+logs
 *.log
+dockerfs
 __pycache__
 
 # IDE Specifics

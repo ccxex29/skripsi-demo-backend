@@ -18,7 +18,7 @@ from PIL import Image
 from face_detection import get_face
 from model_selection import ModelSelection
 
-class DataProcessor:
+class DataProcessor: # pylint: disable=too-many-instance-attributes
     """
     Take care of each requested and response data
     """
@@ -49,6 +49,16 @@ class DataProcessor:
         }
         self.validation_result = None
         self.model_selection = model_selection
+        self.logging = False
+
+    def _get_image_from_base64(self, base64_image: str):
+        try:
+            return cv2.imdecode(np.frombuffer(base64.b64decode(base64_image), dtype=np.uint8), flags=cv2.IMREAD_COLOR)
+        except ValueError:
+            logging.warning('Base64 is probably invalid')
+        except cv2.error:
+            logging.warning('Invalid Image')
+        return None
 
     def postprocess_message(self, message:str):
         """
@@ -68,6 +78,10 @@ class DataProcessor:
             'image': {
                 'required': True,
                 'type': 'string'
+            },
+            'logging': {
+                'required': False,
+                'type': 'boolean'
             }
         }
         try:
@@ -79,7 +93,9 @@ class DataProcessor:
             self.architecture_a = parsed_message['architecture_a']
             self.architecture_b = parsed_message['architecture_b']
             self.mode = self.NORMAL_MODE if self.architecture_a == self.architecture_b else self.COMPARE_MODE
-            self.image = parsed_message['image']
+            self.image = self._get_image_from_base64(parsed_message['image'])
+            if 'logging' in parsed_message:
+                self.logging = parsed_message['logging']
         except ValueError:
             #self.write_message('Error')
             pass
@@ -94,16 +110,11 @@ class DataProcessor:
         """
         if not self.validation_result or self.image is None:
             return self
-        try:
-            face_detection_result = get_face(cv2.imdecode(np.frombuffer(base64.b64decode(self.image), dtype=np.uint8), flags=cv2.IMREAD_COLOR))
-            self.face_detection = {
-                "face_image": face_detection_result['face'],
-                "position": face_detection_result["position"]
-            }
-        except ValueError:
-            logging.warning('Invalid Base64')
-        except cv2.error:
-            logging.warning('Invalid Image')
+        face_detection_result = get_face(self.image)
+        self.face_detection = {
+            "face_image": face_detection_result['face'],
+            "position": face_detection_result["position"]
+        }
         return self
 
     def is_normal_mode(self):
