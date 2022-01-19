@@ -2,6 +2,7 @@ logs
 *.log
 dockerfs
 __pycache__
+*.tar*
 
 # IDE Specifics
 .idea

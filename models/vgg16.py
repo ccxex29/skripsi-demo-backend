@@ -10,6 +10,8 @@ class Vgg16(Model):
     """
     OurLeNet Model
     """
+    FACE_SHAPE = (224, 224)
+
     def _load_model(self): # pylint: disable=R0201,C0116
         return keras.models.load_model('models/preprocessed/vgg16')
 
