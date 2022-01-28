@@ -64,7 +64,12 @@ class HttpApiHandler(tornado.web.RequestHandler): # pylint: disable=W0223
         """
         Define Return for HTTP GET /
         """
-        self.write({key: value['canonical'] for key, value in self.model_selection.get_models().items()})
+        self.write({
+            'data': {
+                'model_list': {key: value['canonical'] for key, value in self.model_selection.get_models().items()},
+                'profile_list': self.model_selection.get_profiles()
+            }
+        })
 
 class WsChannelHandler(tornado.websocket.WebSocketHandler): # pylint: disable=W0223
     """

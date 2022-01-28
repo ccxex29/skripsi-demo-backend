@@ -11,7 +11,7 @@ import json
 
 from cerberus import Validator
 
-from cv2 import cv2
+from cv2 import cv2 # pylint: disable=E0611
 import numpy as np
 from PIL import Image
 

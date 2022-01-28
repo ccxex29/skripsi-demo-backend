@@ -3,7 +3,7 @@ Face Detector Module
 """
 
 from typing import Union, Optional
-from cv2 import cv2
+from cv2 import cv2 # pylint: disable=E0611
 import numpy as np
 
 def get_face(image: np.ndarray) -> dict[str, Optional[Union[np.ndarray, Optional[dict[str, int]]]]]:
