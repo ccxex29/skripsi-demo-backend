@@ -8,7 +8,7 @@ WORKDIR /opt/backend-skripsi
 ENV DEBIAN_FRONTEND=noninteractive \
 	PYTHON_PACKAGE=python3.10-venv \
 	PYTHON=python3.10
-RUN echo "deb http://ppa.launchpad.net/deadsnakes/ppa/ubuntu focal main\ndeb-src http://ppa.launchpad.net/deadsnakes/ppa/ubuntu focal main" | tee /etc/apt/sources.list.d/deadsnakes.list && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F23C5A6CF475977595C89F51BA6932366A755776
+RUN echo "deb http://ppa.launchpad.net/deadsnakes/ppa/ubuntu focal main\ndeb-src http://ppa.launchpad.net/deadsnakes/ppa/ubuntu focal main" | tee /etc/apt/sources.list.d/deadsnakes.list && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys F23C5A6CF475977595C89F51BA6932366A755776
 RUN apt-get update && apt-get install -y --no-install-recommends \
 	curl \
     ffmpeg \

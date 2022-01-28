@@ -9,7 +9,7 @@ import logging
 from uuid import uuid4
 
 import sqlite3
-from cv2 import cv2
+from cv2 import cv2 # pylint: disable=E0611
 import numpy as np
 
 class DataLogging():
