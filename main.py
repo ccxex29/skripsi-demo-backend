@@ -256,17 +256,28 @@ def load_memo(model_selection: ModelSelection):
     """
     Startup Memo Loader
     """
+    logging.info('Loading models...')
     memo = ModelMemo()
     for model_name in model_selection.get_model_keys():
+        timer_start = time.perf_counter()
         memo.add_memo(model_name, model_selection.get_model(model_name)())
+        timer_end = time.perf_counter()
+        logging.info('%s loaded after %.3fs', model_name, timer_end - timer_start)
     return memo
 
-if __name__ == "__main__":
+def main():
+    """
+    Main Function
+    """
     logging.basicConfig(format='[%(levelname)s] %(message)s', level=logging.INFO)
     g_model_selection = ModelSelection()
     g_data_logging = DataLogging()
-    app = make_app(load_memo(g_model_selection), g_model_selection, g_data_logging)
+    g_memo = load_memo(g_model_selection)
+    app = make_app(g_memo, g_model_selection, g_data_logging)
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.listen(PORT)
     logging.info('Listening on port %s', PORT)
     tornado.ioloop.IOLoop.instance().start()
+
+if __name__ == "__main__":
+    main()
