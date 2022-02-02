@@ -19,7 +19,7 @@ class Model(ABC):
     """
     Base Model Class for Face Detection Models
     """
-    FACE_SHAPE = (128, 128)
+    FACE_SHAPE = (224, 224)
 
     def __init__(self, face: Optional[np.ndarray] = None) -> None:
         self.model = self._load_model()
@@ -33,8 +33,10 @@ class Model(ABC):
         if face is None:
             return self
         self.face = face
-        self._preprocess()
         return self
+
+    def _resize_image(self):
+        self.face = cv2.resize(self.face, self.FACE_SHAPE) / 255
 
     def _preprocess(self):
         """
@@ -42,7 +44,7 @@ class Model(ABC):
         """
         if self.face is None:
             return self
-        self.face = cv2.resize(self.face, self.FACE_SHAPE)
+        self._resize_image()
         return self
 
     def _get_confidence(self, raw_classification_value: int): # pylint: disable=no-self-use
