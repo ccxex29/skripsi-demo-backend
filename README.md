@@ -3,6 +3,15 @@
 Watch for required dependencies in the requirements.txt.  
 Run the server by executing `main.py` or run it with python3 on the shell  
 
+## Clone Repository  
+
+This repository requires Git LFS which can be installed by following [this instruction](https://git-lfs.github.com/) once you have installed `git`.  
+
+To clone the repository, use the explicit `git lfs` command:  
+```bash
+$ git lfs clone https://github.com/ccxex29/skripsi-demo-backend.git
+```
+
 ## Docker Build  
 
 The `Dockerfile` is configured to be used with CUDA support. If you don't have
